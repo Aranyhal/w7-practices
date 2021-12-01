@@ -1,45 +1,50 @@
-* {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    background: transparent;
-    outline: none;
-    text-decoration: none;
-    font-family: inherit;
-    box-sizing: border-box;
+/* No CSS */ /*# sourceMappingURL=style.css.map */
+
+form {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  background-color: rgb(91, 224, 8);
+  border: 2px solid rgb(255, 47, 47);
+  border-radius: 4%;
+  width: 50%;
+ padding-top: 20px;
 }
 
-ol,
-ul, 
-li {
-  list-style: none;
-  display: block;
+
+input {
+  display: inline-block;
+  padding: 12px;
+  border: 1px solid rgba(204, 204, 204, 0.945);
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin: 10px;
+  width: 95%;
+  padding: 10px 20px;
+  
+}
+input:focus {
+  background-color: gold;
 }
 
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
+label {
+    margin-left: 10px;
 }
 
-a img {
+button {
+  background-color: gold;
+ text-align: center;
+  display: inline-block;
+  font-size: 20px;
+  padding: 15px 25px;
+  margin: 10px 40%;
   border: none;
+  border-radius: 6px;
+  cursor: pointer;
+
 }
 
-button,
-a{
-  cursor: pointer; 
-  color: inherit;
-}
 
-textarea{
-    resize: none;
-}
-
-button,
-input,
-textarea,
-select {
-  appearance: none !important; 
-  -webkit-appearance: none !important; 
-  border-radius: 0;
+button:hover {
+    background-color: goldenrod;
 }
