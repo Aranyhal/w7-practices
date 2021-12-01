@@ -23,28 +23,29 @@ függvény meghívása mindig ugyanúgy
 */
 
 const inputElement = (type, name, label) => {
-  return`
+  return `
        <div>
         <label>${label}</label>
         <input type="${type}" name="${name}">
         </div>
-        `
-}
+        `;
+};
+
 const selectElement = (type, name, label, selectOptions) => {
   let optionElements = "";
   for (const option of selectOptions) {
     optionElements += `<option>${option}</option>`;
   }
 
-  return`
-        <div>
-             <label>${label}</label>
-            <${type} name="${name}">
-                ${optionElements}
-                </${type}>
-            </div>
-            `
-}
+  return `
+      <div>
+        <label>${label}</label>
+        <${type} name="${name}">
+        ${optionElements}
+        </${type}>
+      </div>
+     `;
+};
 
 /*
 
@@ -54,7 +55,8 @@ const formElement = '<form id="form">' + inputElement("text", "firstName", "Kere
 */
 
 const formElement = `
-    <form id="form">
+    <form id="form" >
+    
         ${inputElement("text", "firstName", "Keresztneved")}
         ${inputElement("file", "profilePicture", "Profilképed")}
         ${inputElement("email", "personalEmail", "Email címed")}
@@ -68,12 +70,11 @@ const formElement = `
           "terms",
           "Elfogadod-e a felhasználási feltételeket?"
         )}
-        ${inputElement("select", "where", "Hol hallottál rólunk?"[
+        ${selectElement("select", "where", "Hol hallottál rólunk?", [
           "internetről",
           "ismerőstől",
-          "egyéb"
-        ]
-        )}
+          "egyéb",
+        ])}
         
         <button>Ok</button>
     </form>
