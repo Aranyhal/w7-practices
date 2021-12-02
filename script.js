@@ -184,7 +184,10 @@ const inputEvent = (event) => {
   }
 };
 if(event.target.getAttribute("name")==="profilePicture") {
-  console.log(event.target.value);
+  console.log(event.target.file[0].name);
+  console.log(event.target.files);
+  const image = URL.createObjectURL(event.target.files[0]);
+  document.getElementById("inputValueContent").insertAdjacentHTML("beforeend", `<img src="${image}">`);
 }
 
 function loadEvent() {
