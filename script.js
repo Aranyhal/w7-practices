@@ -22,11 +22,12 @@ function ();
 függvény meghívása mindig ugyanúgy
 */
 
-const inputElement = (type, name, label) => {
+const inputElement = (type, name, label, req ="") => {
+  console.log(req);
   return `
-       <div>
+       <div class="${type}">
         <label>${label}</label>
-        <input type="${type}" name="${name}">
+        <input type="${type}" name="${name}" ${req}>
         </div>
         `;
 };
@@ -54,12 +55,78 @@ const formElement = '<form id="form">' + inputElement("text", "firstName", "Kere
     </form>
 */
 
+/*const nameData = {
+  type: "text",
+  name: "firstName",
+  label: "Keresztneved"
+}*/
+
+
+
+const anotherformFields = [
+
+{
+  type: "text",
+  name: "street",
+  label: "Közterület neve"
+},
+
+{
+  type: "text",
+  name: "houseNumber",
+  label: "Házszám"
+},
+{
+  type: "number",
+  name: "zipcode",
+  label: "Irányítószám"
+},
+{
+  type: "text",
+  name: "city",
+  label: "Település neve"
+},
+
+]
+const formFields = [
+  {
+    type: "text",
+    name: "firstName",
+    label: "Keresztneved"
+  },
+
+  {type: "file",
+  name: "profilePicture",
+  label: "Profilképed"
+  },
+{
+  type: "email",
+  name: "personalEmail",
+  label: "Email címed",
+  required: "required"
+},
+
+{
+  type: "checkbox",
+  name: "newletter",
+  label: "Szeretnél hírlevelet kapni?"
+},
+
+{
+type: "checkbox",
+name: "terms",
+label: "Elfogadod a felhasználási feltételeket?"
+},
+
+];
+
+/*
 const formElement = `
     <form id="form" >
     
-        ${inputElement("text", "firstName", "Keresztneved")}
+        ${inputElement(nameData.type, nameData.name, nameData.label)}
         ${inputElement("file", "profilePicture", "Profilképed")}
-        ${inputElement("email", "personalEmail", "Email címed")}
+        ${inputElement("email", "personalEmail", "Email címed", "required")}
         ${inputElement(
           "checkbox",
           "newsletter",
@@ -78,7 +145,25 @@ const formElement = `
         
         <button>Ok</button>
     </form>
+`;*/
+
+const formElement = (ffs) => {
+  let toForm = "";
+  for (const ff of ffs) {
+    toForm += inputElement(ff.type, ff.name, ff.label, ff.required)
+  }
+  return`
+     <form id="$(id)" >
+    ${toForm}
+    ${selectElement("select", "where", "Hol hallottál rólunk?", [
+          "internetről",
+          "ismerőstől",
+          "egyéb",
+        ])}
+               <button>Ok</button>
+    </form>
 `;
+}
 
 const formSubmit = (event) => {
   event.preventDefault();
@@ -98,10 +183,14 @@ const inputEvent = (event) => {
     document.getElementById("inputValueContent").innerHTML = event.target.value;
   }
 };
+if(event.target.getAttribute("name")==="profilePicture") {
+  console.log(event.target.value);
+}
 
 function loadEvent() {
   const root = document.getElementById("root");
-  root.insertAdjacentHTML("beforeend", formElement);
+  root.insertAdjacentHTML("beforeend", formElement(formFields, "form"));
+  root.insertAdjacentHTML("beforeend", formElement(anotherformFields, "form2"));
   root.insertAdjacentHTML(
     "beforeend",
     `
